@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portafolio - Johan Lucumi</title>
+    <style>
+      /* ====== ROOT & RESET ====== */
+      :root {
+        --bg: #070709;
+        --card: #0f1114;
+        --muted: #9aa0a6;
+        --accent: #00e0ff;
+        --accent-2: #8a4dff;
+        --glass: rgba(255, 255, 255, 0.03);
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system;
+        background: radial-gradient(
+            1200px 600px at 10% 10%,
+            rgba(0, 224, 255, 0.04),
+            transparent
+          ),
+          radial-gradient(
+            1000px 500px at 90% 90%,
+            rgba(138, 77, 255, 0.03),
+            transparent
+          ),
+          var(--bg);
+        color: #e9eef5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* ====== HEADER ====== */
+      header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(6px);
+        background: linear-gradient(
+          180deg,
+          rgba(10, 10, 12, 0.55),
+          rgba(10, 10, 12, 0.35)
+        );
+        z-index: 200;
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+      }
+      .nav {
+        width: min(1100px, 94%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        font-weight: 800;
+        letter-spacing: 2px;
+        color: var(--accent);
+        font-size: 1.05rem;
+      }
+      nav a {
+        margin-left: 18px;
+        color: var(--muted);
+        font-weight: 600;
+        transition: all 0.28s;
+      }
+      nav a:hover {
+        color: #fff;
+        transform: translateY(-2px);
+        text-shadow: 0 2px 18px rgba(0, 224, 255, 0.06);
+      }
+
+      main {
+        width: min(1100px, 94%);
+        margin: 110px auto 80px;
+        display: block;
+      }
+
+      /* ====== HERO ====== */
+      .hero {
+        display: flex;
+        gap: 36px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+        padding: 28px;
+        border-radius: var(--radius);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.01),
+          rgba(255, 255, 255, 0)
+        );
+        box-shadow: 0 10px 40px rgba(2, 6, 12, 0.6);
+        transform: translateY(6px);
+        animation: heroIn 0.9s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+        opacity: 0;
+      }
+      @keyframes heroIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .avatar {
+        width: 210px;
+        height: 210px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 6px solid rgba(255, 255, 255, 0.04);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7),
+          0 0 40px rgba(0, 224, 255, 0.03) inset;
+        transition: transform 6s ease;
+      }
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .avatar:hover {
+        transform: scale(1.03) rotate(-1deg);
+      }
+
+      .hero-text {
+        max-width: 640px;
+      }
+      .hero-text h1 {
+        font-size: 2.6rem;
+        color: var(--accent);
+        letter-spacing: 0.6px;
+        margin-bottom: 6px;
+      }
+      .hero-text h2 {
+        color: var(--muted);
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .hero-text p {
+        color: #bfc9d2;
+        font-size: 1rem;
+      }
+
+      .cta-row {
+        margin-top: 14px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        padding: 10px 16px;
+        border-radius: 999px;
+        color: #041018;
+        font-weight: 800;
+        box-shadow: 0 10px 30px rgba(10, 200, 255, 0.06),
+          0 2px 8px rgba(138, 77, 255, 0.04);
+        transform: translateY(0);
+        transition: all 0.28s;
+      }
+      .btn:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 18px 40px rgba(10, 200, 255, 0.12);
+      }
+
+      .btn.ghost {
+        background: transparent;
+        color: #cfeff8;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: none;
+        font-weight: 700;
+      }
+
+      /* ====== MARQUEE TECNOLOGÍAS (CSS only) ====== */
+      .stack-wrap {
+        margin-top: 28px;
+        padding: 18px;
+        border-radius: 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.006),
+          rgba(255, 255, 255, 0.002)
+        );
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+      }
+      .marquee-outer {
+        overflow: hidden;
+        position: relative;
+      }
+      .marquee-track {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+        width: max-content;
+        animation: marquee linear infinite;
+        animation-duration: 18s;
+        will-change: transform;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .tech {
+        width: 72px;
+        height: 72px;
+        border-radius: 12px;
+        background: var(--card);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+      }
+      .tech img {
+        width: 48px;
+        height: 48px;
+        filter: grayscale(0) brightness(1);
+      }
+      .tech:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 18px 50px rgba(0, 224, 255, 0.08);
+      }
+
+      /* ====== SECTIONS ANIMATIONS ====== */
+      section.fade-in {
+        opacity: 0;
+        transform: translateY(22px);
+        animation: fadeIn 0.9s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+      }
+      section.fade-in.delay-1 {
+        animation-delay: 0.12s;
+      }
+      section.fade-in.delay-2 {
+        animation-delay: 0.24s;
+      }
+      section.fade-in.delay-3 {
+        animation-delay: 0.36s;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ====== HABILIDADES ====== */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 22px;
+      }
+      .skill {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.012),
+          rgba(255, 255, 255, 0.006)
+        );
+        padding: 18px;
+        border-radius: 12px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+        transition: transform 0.26s, box-shadow 0.26s;
+      }
+      .skill:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 60px rgba(0, 224, 255, 0.06);
+      }
+      .skill h4 {
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+      .skill p {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      /* ====== PROYECTOS ====== */
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+        margin-top: 20px;
+      }
+      .project {
+        border-radius: 12px;
+        overflow: hidden;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.01),
+          rgba(255, 255, 255, 0.002)
+        );
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        transform: translateY(0);
+        transition: all 0.35s;
+      }
+      .project:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 30px 80px rgba(0, 224, 255, 0.07);
+      }
+      .project img {
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
+      }
+      .project .pd {
+        padding: 14px;
+      }
+      .project h3 {
+        margin-bottom: 8px;
+      }
+      .project p {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      /* ====== RECOGNITION CARDS (NEW) ====== */
+      .certs {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 18px;
+      }
+      .cert-card {
+        width: 280px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.012),
+          rgba(255, 255, 255, 0.002)
+        );
+        border-radius: 14px;
+        padding: 0;
+        position: relative;
+        overflow: visible;
+        transform: translateY(0);
+        transition: transform 0.35s, box-shadow 0.35s;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      }
+      /* certificate top image area */
+      .cert-card .art {
+        height: 140px;
+        background: linear-gradient(
+          120deg,
+          rgba(0, 224, 255, 0.06),
+          rgba(138, 77, 255, 0.06)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #05232a;
+        font-weight: 800;
+        font-size: 1.05rem;
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        position: relative;
+      }
+      /* ribbon */
+      .cert-card .ribbon {
+        position: absolute;
+        left: 16px;
+        top: 110px;
+        background: var(--accent);
+        color: #021016;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        box-shadow: 0 8px 20px rgba(0, 224, 255, 0.06);
+        transform: rotate(-6deg);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      /* body */
+      .cert-body {
+        padding: 18px 16px 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.01),
+          transparent
+        );
+        border-bottom-left-radius: 14px;
+        border-bottom-right-radius: 14px;
+      }
+      .cert-body h4 {
+        margin-bottom: 8px;
+        color: #fff;
+      }
+      .cert-body p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+      }
+      .cert-body .meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      /* shine animation */
+      .cert-card::after {
+        content: "";
+        position: absolute;
+        left: -40%;
+        top: 0;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.02)
+        );
+        transform: skewX(-20deg);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .cert-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 36px 100px rgba(0, 224, 255, 0.08);
+      }
+      .cert-card:hover::after {
+        animation: shine 0.9s linear;
+        opacity: 1;
+        left: 100%;
+      }
+      @keyframes shine {
+        0% {
+          left: -40%;
+        }
+        70% {
+          left: 105%;
+        }
+        100% {
+          left: 105%;
+        }
+      }
+
+      /* small ribbon tail */
+      .ribbon::after {
+        content: "";
+        position: absolute;
+        left: 8px;
+        bottom: -8px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid rgba(0, 0, 0, 0.06);
+        opacity: 0.6;
+      }
+
+      /* decorative seal */
+      .seal {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, var(--accent), var(--accent-2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #021016;
+        font-weight: 900;
+        position: absolute;
+        right: 14px;
+        top: 100px;
+        transform: translateY(-10%);
+        box-shadow: 0 10px 30px rgba(0, 224, 255, 0.08);
+      }
+
+      /* staggered entrance for certs */
+      .cert-card:nth-child(1) {
+        animation: certIn 0.6s ease 0.06s both;
+      }
+      .cert-card:nth-child(2) {
+        animation: certIn 0.6s ease 0.16s both;
+      }
+      .cert-card:nth-child(3) {
+        animation: certIn 0.6s ease 0.26s both;
+      }
+      @keyframes certIn {
+        from {
+          opacity: 0;
+          transform: translateY(18px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ====== FOOTER ====== */
+      footer {
+        margin-top: 36px;
+        padding: 26px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      /* ====== RESPONSIVE ====== */
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero {
+          gap: 20px;
+        }
+        .avatar {
+          width: 180px;
+          height: 180px;
+        }
+        .project img {
+          height: 150px;
+        }
+      }
+      @media (max-width: 640px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .nav a {
+          display: none;
+        }
+        .cert-card {
+          width: 100%;
+        }
+        .marquee-track {
+          animation-duration: 24s;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <div class="brand">JL</div>
+        <nav>
+          <a href="#sobre">Sobre mí</a>
+          <a href="#stack">Tecnologías</a>
+          <a href="#habilidades">Habilidades</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#reconocimientos">Reconocimientos</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section id="sobre" class="hero fade-in">
+        <div class="avatar" title="Foto de perfil">
+          <img
+            src="https://randomuser.me/api/portraits/men/75.jpg"
+            alt="Foto Johan"
+          />
+        </div>
+        <div class="hero-text">
+          <h1>Johan Esneider Lucumi Palacios</h1>
+          <h2>Full Stack Developer</h2>
+          <p>
+            Me especializo en construir aplicaciones web modernas y escalables.
+            Trabajo con React, Astro y Python/Flask; diseño pensando en la
+            experiencia de usuario y rendimiento. Me apasiona aprender y
+            entregar soluciones limpias y mantenibles.
+          </p>
+          <div class="cta-row">
+            <a class="btn" href="#proyectos">Ver proyectos</a>
+            <a class="btn ghost" href="#reconocimientos">Reconocimientos</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- STACK / MARQUEE -->
+      <section id="stack" class="fade-in delay-1">
+        <div class="stack-wrap">
+          <h3
+            style="text-align: center; margin-bottom: 12px; color: var(--muted)"
+          >
+            Tecnologías que uso
+          </h3>
+          <div class="marquee-outer">
+            <div
+              class="marquee-track"
+              role="list"
+              aria-label="Tecnologías animadas"
+            >
+              <!-- Repeat logos twice for smooth infinite loop -->
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                  alt="HTML5"
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                  alt="CSS3"
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                  alt="JS"
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                  alt="React"
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg"
+                  alt="Astro"
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                  alt="Python"
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
+                  alt="Flask"
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                  alt="MySQL"
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                  alt="Git"
+                />
+              </div>
+
+              <!-- duplicate -->
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                  alt=""
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                  alt=""
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                  alt=""
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                  alt=""
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg"
+                  alt=""
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                  alt=""
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
+                  alt=""
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                  alt=""
+                />
+              </div>
+              <div class="tech">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Habilidades -->
+      <section id="habilidades" class="fade-in delay-2">
+        <h3 style="text-align: center; color: var(--muted)">
+          Habilidades & Idiomas
+        </h3>
+        <div class="grid" style="margin-top: 18px">
+          <div class="skill">
+            <h4>Frontend</h4>
+            <p>HTML, CSS, JavaScript, React, Astro</p>
+          </div>
+          <div class="skill">
+            <h4>Backend</h4>
+            <p>Python, Flask, APIs, MySQL</p>
+          </div>
+          <div class="skill">
+            <h4>Herramientas</h4>
+            <p>Git, GitHub, VSCode, Webpack</p>
+          </div>
+          <div class="skill">
+            <h4>Comunicación</h4>
+            <p>Trabajo en equipo y documentación clara</p>
+          </div>
+          <div class="skill">
+            <h4>Resolución</h4>
+            <p>Debugging y optimización de performance</p>
+          </div>
+          <div class="skill">
+            <h4>Idiomas</h4>
+            <p>Español (Nativo) · Inglés (Intermedio)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proyectos -->
+      <section id="proyectos" class="fade-in delay-3">
+        <h3 style="text-align: center; color: var(--muted)">
+          Proyectos destacados
+        </h3>
+        <div class="projects">
+          <div class="project">
+            <img
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200"
+              alt="Gestor de tareas"
+            />
+            <div class="pd">
+              <h3>Plataforma de gestión de tareas</h3>
+              <p>
+                React · Flask · MySQL — Autenticación, roles y tablero Kanban.
+              </p>
+            </div>
+          </div>
+          <div class="project">
+            <img
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200"
+              alt="E-commerce"
+            />
+            <div class="pd">
+              <h3>E-commerce demo</h3>
+              <p>Astro · Node/Flask — Carrito, pagos y panel admin.</p>
+            </div>
+          </div>
+          <div class="project">
+            <img
+              src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=1200"
+              alt="Chat"
+            />
+            <div class="pd">
+              <h3>Chat en tiempo real</h3>
+              <p>React · Node.js — WebSockets y notificaciones.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reconocimientos (NUEVAS TARJETAS) -->
+      <section id="reconocimientos" class="fade-in delay-1">
+        <h3 style="text-align: center; color: var(--muted)">Reconocimientos</h3>
+
+        <div class="certs">
+          <!-- CERT 1 -->
+          <article class="cert-card" aria-label="Certificado Python Avanzado">
+            <div class="art">Certificado</div>
+            <div class="ribbon">Python Avanzado</div>
+            <div class="seal">A+</div>
+            <div class="cert-body">
+              <h4>Certificado en Python Avanzado</h4>
+              <p>
+                Curso intensivo sobre estructuras, OOP y buenas prácticas.
+                Proyecto final: API REST con Flask.
+              </p>
+              <div class="meta">
+                <span>Jun 2024</span><strong>Platzi</strong>
+              </div>
+            </div>
+          </article>
+
+          <!-- CERT 2 -->
+          <article class="cert-card" aria-label="Ganador Hackathon">
+            <div class="art">Reconocimiento</div>
+            <div class="ribbon">Hackathon</div>
+            <div class="seal">🏆</div>
+            <div class="cert-body">
+              <h4>Ganador — Hackathon Universitario</h4>
+              <p>
+                Primer lugar por prototipo de app colaborativa enfocada en
+                productividad estudiantil.
+              </p>
+              <div class="meta">
+                <span>Dic 2023</span><strong>Universidad</strong>
+              </div>
+            </div>
+          </article>
+
+          <!-- CERT 3 -->
+          <article class="cert-card" aria-label="Certificado Full Stack">
+            <div class="art">Diploma</div>
+            <div class="ribbon">Full Stack</div>
+            <div class="seal">★</div>
+            <div class="cert-body">
+              <h4>Desarrollo Web Full Stack</h4>
+              <p>
+                Curso completo: frontend, backend y despliegue. Proyecto: tienda
+                online con pasarela de pagos.
+              </p>
+              <div class="meta">
+                <span>Ago 2023</span><strong>Platzi / U</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        © 2025 Johan Esneider Lucumi Palacios — "El código es la forma más
+        elegante de resolver problemas."
+      </footer>
+    </main>
+
+    <!-- NO JS — todo puro CSS -->
+  </body>
+</html>
